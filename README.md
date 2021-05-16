@@ -4,8 +4,8 @@ Tests can be executed via different helpers, but I have configured to work only 
 # Setup repo
 
 ```
- git clone repo
- cd repo
+ git clone https://github.com/sasifnz/TestAutomationValocity.git
+ cd TestAutomationValocity
 
  npm install
  npm run test

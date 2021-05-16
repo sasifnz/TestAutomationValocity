@@ -12,17 +12,17 @@
     "report": "allure generate ./output --clean && allure open"
   },
   "keywords": [],
-  "author": "kaflan, davert",
+  "author": "Asif, Syed",
   "license": "ISC",
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codecept-js/examples.git"
+    "url": "https://github.com/sasifnz/TestAutomationValocity.git"
   },
   "bugs": {
-    "url": "https://github.com/codecept-js/examples/issues"
+    "url": "https://github.com/sasifnz/TestAutomationValocity.git"
   },
-  "homepage": "https://github.com/codecept-js/examples#readme",
+  "homepage": "https://github.com/sasifnz/TestAutomationValocity.git",
   "description": "",
   "devDependencies": {
     "@wdio/cli": "^7.0.4",
