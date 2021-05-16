@@ -1,61 +1,40 @@
-This repo contains tests for TodoMVC application.
-Tests can be executed via different helpers.
+This repo contains tests for Trademe sandbox application.
+Tests can be executed via different helpers, but I have configured to work only with WebdriverIO helper tool. Using Webdriver it helps testing all crossbrowser platforms.
 
-![](todo.png)
-
-# Installation
-
-This is a playground for your first steps in testing, so instead of installing it from NPM it is recommended to clone it from repo instead and then install the dependencies:
+# Setup repo
 
 ```
-git clone git@github.com:codecept-js/examples.git codeceptjs-examples && cd codeceptjs-examples && npm install
-```
+ git clone repo
+ cd repo
 
-This will install CodeceptJS with Puppeteer, WebdriverIO & TestCafe packages. 
-
-# Running Tests
-
-The default helper is Playwright.
-
-## Playwright
-
-Use `codecept.conf.js` to run tests with Playwright:
+ npm install
+ npm run test
 
 ```
-npx codeceptjs run --steps
-```
 
-## Puppeteer
+# report generation
 
-Use `codecept.puppeteer.conf.js` to run tests with Puppeteer:
+When the tests are done you can generate allure report from the results
 
 ```
-npx codeceptjs run --steps -c codecept.puppeteer.conf.js 
+    npm run report
 ```
 
+This will open allure report server in browser and gives you information on test reports.
 
-## WebdriverIO
-
-Use `codecept.webdriver.conf.js` to run tests with WebdriverIO in Chrome:
-
-```
-npx codeceptjs run -c codecept.webdriver.conf.js --steps 
-```
-
-## TestCafe
-
-Use `codecept.testcafe.conf.js` to run tests with TestCafe in Chrome:
-
-```
-npx codeceptjs run -c codecept.testcafe.conf.js --steps 
-```
-
-## Headless Mpde
+## Headless Mode
 
 Run tests in headless mode:
+Under .env files change #HEADLESS to HEADLESS then execute tests in headless mode
 
 ```
-HEADLESS=true npx codeceptjs run --steps
+npm run test
+```
+
+Otherway to run headless mode is to run below command which has headless prefix. See package.json file scripts for more information.
+
+```
+npm run headless:chrome
 ```
 
 ## Parallel Execution
@@ -65,12 +44,3 @@ Run tests in parallel with 3 workers:
 ```
 npx codeceptjs run-workers 3
 ```
-
-## Credits
-
-Created as part of codepress by Stefan Huber.
-Maintained by CodeceptJS Team.
-
-## LICENSE
-
-MIT

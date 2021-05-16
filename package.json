@@ -3,7 +3,13 @@
   "version": "1.2.1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx codeceptjs run --verbose --features --profile chrome",
+    "chrome": "npx codeceptjs run --verbose --features --profile chrome",
+    "headless:chrome": "npx codeceptjs run --verbose --features --profile chrome --HEADLESS=true",
+    "firefox": "npx codeceptjs run --verbose --features --profile firefox",
+    "safari": "npx codeceptjs run --verbose --features --profile safari",
+    "generateSteps": "npx codeceptjs gherkin:snippets",
+    "report": "allure generate ./output --clean && allure open"
   },
   "keywords": [],
   "author": "kaflan, davert",
@@ -19,13 +25,14 @@
   "homepage": "https://github.com/codecept-js/examples#readme",
   "description": "",
   "devDependencies": {
-    "@codeceptjs/configure": "^0.5.0",
-    "@codeceptjs/ui": "^0.2.0",
-    "@wdio/selenium-standalone-service": "^5.16.10",
-    "codeceptjs": "^3.0.0-beta.2",
-    "playwright": "^1.0.1",
-    "puppeteer": "^2.0.0",
-    "testcafe": "^1.7.0",
-    "webdriverio": "^5.16.11"
+    "@wdio/cli": "^7.0.4",
+    "@wdio/selenium-standalone-service": "^7.0.4",
+    "@wdio/sync": "^7.0.4",
+    "allure-commandline": "^2.13.8",
+    "codeceptjs": "^3.0.5",
+    "codeceptjs-axios": "^1.0.1",
+    "dotenv": "^9.0.2",
+    "oauth": "^0.9.15",
+    "webdriverio": "^7.0.4"
   }
 }

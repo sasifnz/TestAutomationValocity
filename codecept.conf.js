@@ -1,35 +1,73 @@
-const { setHeadlessWhen } = require('@codeceptjs/configure');
+require("dotenv").config();
+
+const { setHeadlessWhen } = require("@codeceptjs/configure");
 
 setHeadlessWhen(process.env.HEADLESS);
 
+const BROWSER = process.profile || "chrome";
+
 exports.config = {
-  tests: './todomvc-tests/**/*_test.js',
-  output: './output',
+  output: "./output",
   helpers: {
-    Playwright: {
-      url: 'http://localhost',
-      waitForTimeout: 5000,
-      show: true,
+    WebDriver: {
+      browser: BROWSER,
+      url: "https://www.tmsandbox.co.nz/",
+      smartWait: 5000,
+      waitForTimeout: 20000,
+      timeouts: {
+        implicit: 5000,
+        script: 60000,
+        "page load": 10000,
+      },
     },
-
-    REST: {},
-
+    REST: {
+      endpoint: "https://secure.tmsandbox.co.nz",
+      onRequest: () => {
+        //request.headers.auth = "123";
+      },
+    },
     CustomHelper: {
-      require: './todomvc-tests/helpers/custom.helper.js'
-    }
+      require: "./e2es/helpers/custom.helper.js",
+    },
   },
-
   gherkin: {
-    features: './todomvc-tests/features/*.feature',
+    features: "./e2es/features/*.feature",
     steps: [
-      './todomvc-tests/step-definitions/create-todos.steps.js'
-    ]
+      "./e2es/steps/trademe.steps.js",
+      "./e2es/steps/trademeSearch.steps.js",
+      "./e2es/steps/trademeWatchList.steps.js",
+    ],
+  },
+  include: {
+    trademePages: "./e2es/pages/trademe.pages.js",
+    trademeSearchItemPages: "./e2es/pages/trademeSearchItem.pages.js",
+    trademeWatchlListPages: "./e2es/pages/trademeWatchList.pages.js",
+  },
+  plugins: {
+    screenshotOnFail: {
+      enabled: true,
+    },
+    allure: {
+      enabled: true,
+    },
+    autoDelay: {
+      enabled: true,
+      delayBefore: 400,
+    },
+    retryFailedStep: {
+      enabled: true,
+      retries: 5,
+    },
+    tryTo: {
+      enabled: true,
+    },
+    wdio: {
+      enabled: true,
+      services: ["selenium-standalone"],
+    },
   },
 
-  include: {
-    TodosPage: './todomvc-tests/pages/todos.page.js'
-  },
   bootstrap: null,
   mocha: {},
-  name: 'codecept demo tests'
-}
+  name: "codecept demo tests",
+};
